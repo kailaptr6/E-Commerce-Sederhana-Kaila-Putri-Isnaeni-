@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaila Fashion Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Kaila Fashion</div>
+            <ul class="nav-links">
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#produk">Produk</a></li>
+                <li><a href="#">Kategori</a></li>
+                <li class="cart-nav" onclick="checkoutAlert()">
+                    <span id="cart-icon">🛒 Keranjang (<span id="cart-count">0</span>)</span>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Selamat Datang di Toko Kaila Fashion</h1>
+                <p>Temukan outfit stylish & trendy untuk penampilan terbaikmu setiap hari.</p>
+                <a href="#produk" class="btn-hero">Belanja Sekarang</a>
+            </div>
+        </section>
+
+        <section id="produk" class="container">
+            <h2 class="section-title">Produk Unggulan</h2>
+            <div class="product-grid">
+                
+                <article class="product-card">
+                    <img src="img/jam tangan 1.jpg" alt="Minimalist White Watch">
+                    <h3>Kaila Premium Basic Tee</h3>
+                    <p class="price">Rp 245.000</p>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Minimalist White')">Tambah ke Keranjang</button>
+                </article>
+
+                <article class="product-card">
+                    <img src="img/jam tangan 2.jpg" alt="Classic Brown Watch">
+                    <h3>Oversize Shirt Luxe</h3>
+                    <p class="price">Rp 350.000</p>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Classic Brown')">Tambah ke Keranjang</button>
+                </article>
+
+                <article class="product-card">
+                    <img src="img/jam tangan 3.webp" alt="Midnight Steel Watch">
+                    <h3>Floral Dress Premium</h3>
+                    <p class="price">Rp 700.000</p>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Midnight Steel')">Tambah ke Keranjang</button>
+                </article>
+
+                <article class="product-card">
+                    <img src="img/jam tangan 4.jpg" alt="Deskripsi gambar wajib ada">
+                    <h3>Hoodie Exclusive</h3>
+                    <p class="price">Rp 385.000</p>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Rose Gold Elegance')">Tambah ke Keranjang</button>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <p>Kontak: Kailaptt@gmail.com | 083131272070</p>
+            <p>&copy; 2026 Kaila Fashion | Kaila - Administrasi Bisnis 3</p>
+        </div>
+    </footer>
+
+    <script>
+        let jumlahBarang = 0;
+
+        function tambahKeKeranjang(namaProduk) {
+            jumlahBarang++;
+            document.getElementById('cart-count').innerText = jumlahBarang;
+            alert(namaProduk + " telah ditambahkan ke keranjang!");
+        }
+
+        function checkoutAlert() {
+            if(jumlahBarang > 0) {
+                alert("Anda memiliki " + jumlahBarang + " produk. Lanjut ke proses Checkout?");
+            } else {
+                alert("Keranjang Anda masih kosong!");
+            }
+        }
+    </script>
+
+</body>
+</html>
