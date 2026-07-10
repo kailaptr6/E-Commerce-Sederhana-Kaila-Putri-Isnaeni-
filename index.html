@@ -6,6 +6,194 @@
     <title>Kaila Fashion Store</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ====== TAMBAHAN CSS UNTUK KERANJANG & CHECKOUT ====== */
+        .cart-nav { cursor: pointer; }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        .overlay.active { display: block; }
+
+        .cart-panel {
+            position: fixed;
+            top: 0; right: -420px;
+            width: 380px;
+            max-width: 90%;
+            height: 100%;
+            background: #fff;
+            z-index: 1000;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+        }
+        .cart-panel.active { right: 0; }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-header h2 { font-size: 18px; margin: 0; }
+        .cart-close { cursor: pointer; font-size: 22px; background: none; border: none; }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 20px;
+        }
+        .cart-empty { text-align: center; color: #999; margin-top: 40px; }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 12px 0;
+            gap: 10px;
+        }
+        .cart-item-info { flex: 1; }
+        .cart-item-info h4 { margin: 0 0 4px 0; font-size: 14px; }
+        .cart-item-info p { margin: 0; font-size: 13px; color: #666; }
+
+        .qty-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .qty-control button {
+            width: 24px; height: 24px;
+            border: 1px solid #ccc;
+            background: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+        }
+        .qty-control span { min-width: 16px; text-align: center; font-size: 13px; }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #d9534f;
+            cursor: pointer;
+            font-size: 12px;
+            text-decoration: underline;
+        }
+
+        .cart-footer {
+            padding: 16px 20px;
+            border-top: 1px solid #eee;
+        }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        .btn-checkout {
+            width: 100%;
+            padding: 12px;
+            background: #222;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        .btn-checkout:hover { background: #444; }
+        .btn-checkout:disabled { background: #aaa; cursor: not-allowed; }
+
+        /* ====== MODAL CHECKOUT ====== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active { display: flex; }
+
+        .modal-box {
+            background: #fff;
+            width: 420px;
+            max-width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-radius: 10px;
+            padding: 24px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .modal-box h2 { margin-top: 0; }
+        .modal-box label {
+            display: block;
+            margin: 12px 0 4px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .modal-box input, .modal-box textarea, .modal-box select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .modal-summary {
+            background: #f7f7f7;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 14px 0;
+            font-size: 13px;
+        }
+        .modal-summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        .modal-summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 15px;
+            border-top: 1px solid #ddd;
+            margin-top: 8px;
+            padding-top: 8px;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .btn-cancel, .btn-confirm {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-cancel { background: #eee; color: #333; }
+        .btn-confirm { background: #222; color: #fff; }
+
+        .success-box { text-align: center; }
+        .success-box .icon { font-size: 50px; margin-bottom: 10px; }
+    </style>
 </head>
 <body>
 
@@ -16,7 +204,7 @@
                 <li><a href="#">Beranda</a></li>
                 <li><a href="#produk">Produk</a></li>
                 <li><a href="#">Kategori</a></li>
-                <li class="cart-nav" onclick="checkoutAlert()">
+                <li class="cart-nav" onclick="bukaKeranjang()">
                     <span id="cart-icon">🛒 Keranjang (<span id="cart-count">0</span>)</span>
                 </li>
             </ul>
@@ -35,116 +223,111 @@
         <section id="produk" class="container">
             <h2 class="section-title">Produk Unggulan</h2>
             <div class="product-grid">
-                
+
                 <article class="product-card">
                     <img src="baju basic 1.webp" alt="kaos Premium Basic Tee">
                     <h3>kaos Premium Basic Tee</h3>
                     <p class="price">Rp 245.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('kaos Premium Basic Tee')">Tambah ke Keranjang</button>
+                    <button class="btn-add" onclick="tambahKeKeranjang('kaos Premium Basic Tee', 245000)">Tambah ke Keranjang</button>
                 </article>
 
                 <article class="product-card">
                     <img src="oversize luxe 3.jpg" alt="Oversize Shirt Luxe">
                     <h3>Oversize Shirt Luxe</h3>
                     <p class="price">Rp 350.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('Oversize Shirt Luxe')">Tambah ke Keranjang</button>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Oversize Shirt Luxe', 350000)">Tambah ke Keranjang</button>
                 </article>
 
                 <article class="product-card">
                     <img src="dres premium 2.webp" alt="Floral Dress Premium">
                     <h3>Floral Dress Premium</h3>
                     <p class="price">Rp 700.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('Floral Dress Premium')">Tambah ke Keranjang</button>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Floral Dress Premium', 700000)">Tambah ke Keranjang</button>
                 </article>
 
                 <article class="product-card">
                     <img src="hoodie exlusive 4.avif" alt="Hoodie Exclusive">
                     <h3>Hoodie Exclusive</h3>
                     <p class="price">Rp 385.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('Hoodie Exclusive')">Tambah ke Keranjang</button>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Hoodie Exclusive', 385000)">Tambah ke Keranjang</button>
                 </article>
 
                  <article class="product-card">
                     <img src="floral dress.webp" alt="floral dress">
                     <h3>floral dress</h3>
                     <p class="price">Rp 300.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('floral dress')">Tambah ke Keranjang</button>
+                    <button class="btn-add" onclick="tambahKeKeranjang('floral dress', 300000)">Tambah ke Keranjang</button>
                 </article>
 
                 <article class="product-card">
                     <img src="Blue Dress - Alexander.webp" alt="Blue Dress - Alexander">
                     <h3>Blue Dress - Alexander</h3>
                     <p class="price">Rp 560.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('Blue Dress - Alexander')">Tambah ke Keranjang</button>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Blue Dress - Alexander', 560000)">Tambah ke Keranjang</button>
                 </article>
 
                 <article class="product-card">
                     <img src="Kaos Paris Tokyo New.webp" alt="Kaos Paris Tokyo New">
                     <h3>Kaos Paris Tokyo New</h3>
                     <p class="price">Rp 255.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('Kaos Paris Tokyo New')">Tambah ke Keranjang</button>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Kaos Paris Tokyo New', 255000)">Tambah ke Keranjang</button>
                 </article>
 
                 <article class="product-card">
                     <img src="Kaos BAND - HINDIA TRACKLIST.jpg" alt="Kaos BAND - HINDIA TRACKLIST">
                     <h3>Kaos BAND - HINDIA TRACKLIST</h3>
                     <p class="price">Rp 650.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('Kaos BAND - HINDIA TRACKLIST')">Tambah ke Keranjang</button>
-                    </article>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Kaos BAND - HINDIA TRACKLIST', 650000)">Tambah ke Keranjang</button>
+                </article>
 
                  <article class="product-card">
                     <img src="Kaos retro Amerika Mata Korea Style.webp" alt="Kaos retro Amerika Mata Korea Style">
                     <h3>Kaos retro Amerika Mata Korea Style</h3>
                     <p class="price">Rp 330.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('Kaos retro Amerika Mata Korea Style')">Tambah ke Keranjang</button>
-                    </article>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Kaos retro Amerika Mata Korea Style', 330000)">Tambah ke Keranjang</button>
+                </article>
 
                 <article class="product-card">
                     <img src="Kaos New Life.jpg" alt="Kaos New Life">
                     <h3>Kaos New Life</h3>
                     <p class="price">Rp 200.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('Kaos New Life')">Tambah ke Keranjang</button>
-                    </article>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Kaos New Life', 200000)">Tambah ke Keranjang</button>
+                </article>
 
                 <article class="product-card">
                     <img src="Utility Shirt Dress.jpg" alt="Utility Shirt Dress">
                     <h3>Utility Shirt Dress</h3>
                     <p class="price">Rp 300.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('Utility Shirt Dress')">Tambah ke Keranjang</button>
-                    </article>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Utility Shirt Dress', 300000)">Tambah ke Keranjang</button>
+                </article>
 
                 <article class="product-card">
                     <img src="Shirt Dress.jpg" alt="Shirt Dress">
                     <h3>Shirt Dress</h3>
                     <p class="price">Rp 430.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('Shirt Dress')">Tambah ke Keranjang</button>
-                    </article>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Shirt Dress', 430000)">Tambah ke Keranjang</button>
+                </article>
 
                 <article class="product-card">
                     <img src="Amora Button Dress.jpg" alt="Amora Button Dress">
                     <h3>Amora Button Dress</h3>
                     <p class="price">Rp 530.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('Amora Button Dress')">Tambah ke Keranjang</button>
-                    </article>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Amora Button Dress', 530000)">Tambah ke Keranjang</button>
+                </article>
 
                 <article class="product-card">
                     <img src="Elara Puff Sleeve Dress.jpg" alt="Elara Puff Sleeve Dress">
                     <h3>Elara Puff Sleeve Dress</h3>
                     <p class="price">Rp 600.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('Elara Puff Sleeve Dress')">Tambah ke Keranjang</button>
-                    </article>
+                    <button class="btn-add" onclick="tambahKeKeranjang('Elara Puff Sleeve Dress', 600000)">Tambah ke Keranjang</button>
+                </article>
 
                 <article class="product-card">
                     <img src="Dress polos white.jpg" alt="Dress polos white">
                     <h3>Dress polos white</h3>
                     <p class="price">Rp 366.000</p>
-                    <button class="btn-add" onclick="tambahKeKeranjang('Dress polos white')">Tambah ke Keranjang</button>
-                    </article>
-                    
-                    
-            
-            
-
+                    <button class="btn-add" onclick="tambahKeKeranjang('Dress polos white', 366000)">Tambah ke Keranjang</button>
+                </article>
 
             </div>
         </section>
@@ -157,21 +340,221 @@
         </div>
     </footer>
 
-    <script>
-        let jumlahBarang = 0;
+    <!-- ====== OVERLAY GELAP ====== -->
+    <div class="overlay" id="overlay" onclick="tutupSemua()"></div>
 
-        function tambahKeKeranjang(namaProduk) {
-            jumlahBarang++;
-            document.getElementById('cart-count').innerText = jumlahBarang;
-            alert(namaProduk + " telah ditambahkan ke keranjang!");
+    <!-- ====== PANEL KERANJANG ====== -->
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h2>Keranjang Belanja</h2>
+            <button class="cart-close" onclick="tutupKeranjang()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            <p class="cart-empty">Keranjang masih kosong</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">Rp 0</span>
+            </div>
+            <button class="btn-checkout" id="btnCheckout" onclick="bukaCheckout()" disabled>Checkout</button>
+        </div>
+    </div>
+
+    <!-- ====== MODAL CHECKOUT ====== -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-box" id="checkoutModalContent">
+            <!-- Diisi otomatis oleh JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // ================== DATA KERANJANG ==================
+        let keranjang = []; // [{ nama, harga, qty }]
+
+        // ================== FORMAT RUPIAH ==================
+        function formatRupiah(angka) {
+            return "Rp " + angka.toLocaleString('id-ID');
         }
 
-        function checkoutAlert() {
-            if(jumlahBarang > 0) {
-                alert("Anda memiliki " + jumlahBarang + " produk. Lanjut ke proses Checkout?");
+        // ================== TAMBAH PRODUK ==================
+        function tambahKeKeranjang(namaProduk, harga) {
+            const itemAda = keranjang.find(item => item.nama === namaProduk);
+            if (itemAda) {
+                itemAda.qty++;
             } else {
-                alert("Keranjang Anda masih kosong!");
+                keranjang.push({ nama: namaProduk, harga: harga, qty: 1 });
             }
+            perbaruiTampilanKeranjang();
+
+            // Notifikasi kecil, tetap buka panel keranjang
+            bukaKeranjang();
+        }
+
+        // ================== UBAH JUMLAH ==================
+        function ubahJumlah(index, perubahan) {
+            keranjang[index].qty += perubahan;
+            if (keranjang[index].qty <= 0) {
+                keranjang.splice(index, 1);
+            }
+            perbaruiTampilanKeranjang();
+        }
+
+        // ================== HAPUS ITEM ==================
+        function hapusItem(index) {
+            keranjang.splice(index, 1);
+            perbaruiTampilanKeranjang();
+        }
+
+        // ================== HITUNG TOTAL ==================
+        function hitungTotal() {
+            return keranjang.reduce((total, item) => total + (item.harga * item.qty), 0);
+        }
+
+        // ================== HITUNG JUMLAH BARANG ==================
+        function hitungJumlahBarang() {
+            return keranjang.reduce((total, item) => total + item.qty, 0);
+        }
+
+        // ================== RENDER TAMPILAN KERANJANG ==================
+        function perbaruiTampilanKeranjang() {
+            const container = document.getElementById('cartItemsContainer');
+            const totalEl = document.getElementById('cartTotal');
+            const countEl = document.getElementById('cart-count');
+            const btnCheckout = document.getElementById('btnCheckout');
+
+            countEl.innerText = hitungJumlahBarang();
+            totalEl.innerText = formatRupiah(hitungTotal());
+            btnCheckout.disabled = keranjang.length === 0;
+
+            if (keranjang.length === 0) {
+                container.innerHTML = '<p class="cart-empty">Keranjang masih kosong</p>';
+                return;
+            }
+
+            container.innerHTML = keranjang.map((item, index) => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <h4>${item.nama}</h4>
+                        <p>${formatRupiah(item.harga)}</p>
+                        <div class="qty-control">
+                            <button onclick="ubahJumlah(${index}, -1)">-</button>
+                            <span>${item.qty}</span>
+                            <button onclick="ubahJumlah(${index}, 1)">+</button>
+                        </div>
+                        <button class="remove-item" onclick="hapusItem(${index})">Hapus</button>
+                    </div>
+                    <div><strong>${formatRupiah(item.harga * item.qty)}</strong></div>
+                </div>
+            `).join('');
+        }
+
+        // ================== BUKA / TUTUP PANEL KERANJANG ==================
+        function bukaKeranjang() {
+            document.getElementById('cartPanel').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+        function tutupKeranjang() {
+            document.getElementById('cartPanel').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+        function tutupSemua() {
+            tutupKeranjang();
+            tutupCheckout();
+        }
+
+        // ================== BUKA MODAL CHECKOUT ==================
+        function bukaCheckout() {
+            if (keranjang.length === 0) return;
+
+            const total = hitungTotal();
+            const ringkasan = keranjang.map(item => `
+                <div class="modal-summary-item">
+                    <span>${item.nama} x${item.qty}</span>
+                    <span>${formatRupiah(item.harga * item.qty)}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('checkoutModalContent').innerHTML = `
+                <h2>Checkout</h2>
+                <div class="modal-summary">
+                    ${ringkasan}
+                    <div class="modal-summary-total">
+                        <span>Total Bayar</span>
+                        <span>${formatRupiah(total)}</span>
+                    </div>
+                </div>
+
+                <label>Nama Penerima</label>
+                <input type="text" id="checkoutNama" placeholder="Nama lengkap" required>
+
+                <label>Nomor HP</label>
+                <input type="text" id="checkoutHp" placeholder="08xxxxxxxxxx" required>
+
+                <label>Alamat Pengiriman</label>
+                <textarea id="checkoutAlamat" rows="3" placeholder="Alamat lengkap" required></textarea>
+
+                <label>Metode Pembayaran</label>
+                <select id="checkoutMetode">
+                    <option value="Transfer Bank">Transfer Bank</option>
+                    <option value="COD">COD (Bayar di Tempat)</option>
+                    <option value="E-Wallet">E-Wallet</option>
+                </select>
+
+                <div class="modal-actions">
+                    <button class="btn-cancel" onclick="tutupCheckout()">Batal</button>
+                    <button class="btn-confirm" onclick="konfirmasiCheckout()">Konfirmasi Pesanan</button>
+                </div>
+            `;
+
+            document.getElementById('checkoutModal').classList.add('active');
+        }
+
+        function tutupCheckout() {
+            document.getElementById('checkoutModal').classList.remove('active');
+        }
+
+        // ================== PROSES KONFIRMASI CHECKOUT ==================
+        function konfirmasiCheckout() {
+            const nama = document.getElementById('checkoutNama').value.trim();
+            const hp = document.getElementById('checkoutHp').value.trim();
+            const alamat = document.getElementById('checkoutAlamat').value.trim();
+            const metode = document.getElementById('checkoutMetode').value;
+
+            if (!nama || !hp || !alamat) {
+                alert('Mohon lengkapi semua data terlebih dahulu.');
+                return;
+            }
+
+            const total = hitungTotal();
+            const kodePesanan = 'KF' + Date.now().toString().slice(-6);
+
+            document.getElementById('checkoutModalContent').innerHTML = `
+                <div class="success-box">
+                    <div class="icon">✅</div>
+                    <h2>Pesanan Berhasil!</h2>
+                    <p>Kode Pesanan: <strong>${kodePesanan}</strong></p>
+                    <p>Terima kasih, <strong>${nama}</strong>!</p>
+                    <div class="modal-summary" style="text-align:left;">
+                        <div class="modal-summary-item"><span>Total Bayar</span><span>${formatRupiah(total)}</span></div>
+                        <div class="modal-summary-item"><span>Metode</span><span>${metode}</span></div>
+                        <div class="modal-summary-item"><span>Dikirim ke</span><span>${alamat}</span></div>
+                        <div class="modal-summary-item"><span>No. HP</span><span>${hp}</span></div>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn-confirm" style="flex:1;" onclick="selesaiBelanja()">Selesai</button>
+                    </div>
+                </div>
+            `;
+
+            // Kosongkan keranjang setelah checkout berhasil
+            keranjang = [];
+            perbaruiTampilanKeranjang();
+        }
+
+        function selesaiBelanja() {
+            tutupCheckout();
+            tutupKeranjang();
         }
     </script>
 
