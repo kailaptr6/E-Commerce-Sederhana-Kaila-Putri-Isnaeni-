@@ -7,7 +7,58 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* ====== TAMBAHAN CSS UNTUK KERANJANG & CHECKOUT ====== */
+        .categories {
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            font-family: 'Poppins', sans-serif;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .category-card {
+            background: #f7f7f7;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 18px 12px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            text-transform: capitalize;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        .category-card:hover {
+            background: #ececec;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        .category-card.active {
+            background: #222;
+            color: #fff;
+            border-color: #222;
+        }
+
+        /* Animasi & style saat produk difilter */
+        .product-card {
+            transition: opacity 0.2s ease;
+        }
+        .product-card.hide {
+            display: none;
+        }
+        .product-empty-msg {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #999;
+            padding: 30px 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
         .cart-nav { cursor: pointer; }
 
         .overlay {
@@ -115,7 +166,6 @@
         .btn-checkout:hover { background: #444; }
         .btn-checkout:disabled { background: #aaa; cursor: not-allowed; }
 
-        /* ====== MODAL CHECKOUT ====== */
         .modal {
             display: none;
             position: fixed;
@@ -223,11 +273,11 @@
     <section class="categories" id="kategori">
       <h2 class="section-title">Kategori</h2>
       <div class="category-grid">
-        <div class="category-card" onclick="filterKategori('Long dress')">long dress</div>
-        <div class="category-card" onclick="filterKategori('Mini dress')">Mini dress</div>
-        <div class="category-card" onclick="filterKategori('T-shirt')">T-shirt</div>
-        <div class="category-card" onclick="filterKategori('Casual')">Casual</div>
-        <div class="category-card" onclick="filterKategori('all')">Semua</div>
+        <div class="category-card" data-kategori="Long dress" onclick="filterKategori('Long dress')">long dress</div>
+        <div class="category-card" data-kategori="Mini dress" onclick="filterKategori('Mini dress')">Mini dress</div>
+        <div class="category-card" data-kategori="T-shirt" onclick="filterKategori('T-shirt')">T-shirt</div>
+        <div class="category-card" data-kategori="Casual" onclick="filterKategori('Casual')">Casual</div>
+        <div class="category-card active" data-kategori="all" onclick="filterKategori('all')">Semua</div>
       </div>
     </section>
 
@@ -359,10 +409,8 @@
         </div>
     </footer>
 
-    <!-- ====== OVERLAY GELAP ====== -->
     <div class="overlay" id="overlay" onclick="tutupSemua()"></div>
 
-    <!-- ====== PANEL KERANJANG ====== -->
     <div class="cart-panel" id="cartPanel">
         <div class="cart-header">
             <h2>Keranjang Belanja</h2>
@@ -380,7 +428,6 @@
         </div>
     </div>
 
-    <!-- ====== MODAL CHECKOUT ====== -->
     <div class="modal" id="checkoutModal">
         <div class="modal-box" id="checkoutModalContent">
             <!-- Diisi otomatis oleh JavaScript -->
@@ -388,15 +435,48 @@
     </div>
 
     <script>
-        // ================== DATA KERANJANG ==================
         let keranjang = []; // [{ nama, harga, qty }]
 
-        // ================== FORMAT RUPIAH ==================
         function formatRupiah(angka) {
             return "Rp " + angka.toLocaleString('id-ID');
         }
 
-        // ================== TAMBAH PRODUK ==================
+        function filterKategori(kategori) {
+            const semuaProduk = document.querySelectorAll('.product-card');
+            const semuaKategoriCard = document.querySelectorAll('.category-card');
+            
+            semuaKategoriCard.forEach(card => {
+                card.classList.toggle('active', card.dataset.kategori === kategori);
+            });
+
+            let adaYangTampil = false;
+            semuaProduk.forEach(produk => {
+                const cocok = (kategori === 'all') || (produk.dataset.category === kategori);
+                produk.classList.toggle('hide', !cocok);
+                if (cocok) adaYangTampil = true;
+            });
+
+            tampilkanPesanKosong(!adaYangTampil);
+
+            // Scroll otomatis ke bagian produk
+            document.getElementById('produk').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function tampilkanPesanKosong(tampilkan) {
+            const grid = document.querySelector('.product-grid');
+            let pesan = grid.querySelector('.product-empty-msg');
+            if (tampilkan) {
+                if (!pesan) {
+                    pesan = document.createElement('p');
+                    pesan.className = 'product-empty-msg';
+                    pesan.innerText = 'Belum ada produk pada kategori ini.';
+                    grid.appendChild(pesan);
+                }
+            } else if (pesan) {
+                pesan.remove();
+            }
+        }
+
         function tambahKeKeranjang(namaProduk, harga) {
             const itemAda = keranjang.find(item => item.nama === namaProduk);
             if (itemAda) {
@@ -410,7 +490,6 @@
             bukaKeranjang();
         }
 
-        // ================== UBAH JUMLAH ==================
         function ubahJumlah(index, perubahan) {
             keranjang[index].qty += perubahan;
             if (keranjang[index].qty <= 0) {
@@ -419,23 +498,19 @@
             perbaruiTampilanKeranjang();
         }
 
-        // ================== HAPUS ITEM ==================
         function hapusItem(index) {
             keranjang.splice(index, 1);
             perbaruiTampilanKeranjang();
         }
 
-        // ================== HITUNG TOTAL ==================
         function hitungTotal() {
             return keranjang.reduce((total, item) => total + (item.harga * item.qty), 0);
         }
 
-        // ================== HITUNG JUMLAH BARANG ==================
         function hitungJumlahBarang() {
             return keranjang.reduce((total, item) => total + item.qty, 0);
         }
 
-        // ================== RENDER TAMPILAN KERANJANG ==================
         function perbaruiTampilanKeranjang() {
             const container = document.getElementById('cartItemsContainer');
             const totalEl = document.getElementById('cartTotal');
@@ -468,7 +543,6 @@
             `).join('');
         }
 
-        // ================== BUKA / TUTUP PANEL KERANJANG ==================
         function bukaKeranjang() {
             document.getElementById('cartPanel').classList.add('active');
             document.getElementById('overlay').classList.add('active');
@@ -482,7 +556,6 @@
             tutupCheckout();
         }
 
-        // ================== BUKA MODAL CHECKOUT ==================
         function bukaCheckout() {
             if (keranjang.length === 0) return;
 
@@ -533,7 +606,6 @@
             document.getElementById('checkoutModal').classList.remove('active');
         }
 
-        // ================== PROSES KONFIRMASI CHECKOUT ==================
         function konfirmasiCheckout() {
             const nama = document.getElementById('checkoutNama').value.trim();
             const hp = document.getElementById('checkoutHp').value.trim();
@@ -566,7 +638,6 @@
                 </div>
             `;
 
-            // Kosongkan keranjang setelah checkout berhasil
             keranjang = [];
             perbaruiTampilanKeranjang();
         }
