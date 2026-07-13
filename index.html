@@ -243,6 +243,60 @@
 
         .success-box { text-align: center; }
         .success-box .icon { font-size: 50px; margin-bottom: 10px; }
+
+        /* Deskripsi tiap produk */
+        .product-desc {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.5;
+            margin: 6px 0 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Seksi Tentang Toko di halaman utama */
+        .about-store {
+            padding: 50px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+        .about-store h2 {
+            font-size: 26px;
+            margin-bottom: 14px;
+        }
+        .about-store p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            max-width: 750px;
+            margin: 0 auto 30px;
+        }
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .about-highlight-card {
+            background: #f7f7f7;
+            border-radius: 10px;
+            padding: 22px 16px;
+        }
+        .about-highlight-card .emoji {
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+        .about-highlight-card h4 {
+            font-size: 15px;
+            margin: 0 0 6px;
+        }
+        .about-highlight-card p {
+            font-size: 13px;
+            color: #777;
+            margin: 0;
+            max-width: none;
+        }
     </style>
 </head>
 <body>
@@ -270,6 +324,37 @@
             </div>
         </section>
 
+        <section class="about-store" id="tentang">
+            <h2>Tentang Kaila Fashion</h2>
+            <p>
+                Kaila Fashion adalah toko pakaian online yang menghadirkan koleksi dress, kaos, hingga outfit casual
+                dengan desain kekinian dan bahan berkualitas. Setiap produk kami pilih dengan cermat agar nyaman
+                dipakai sehari-hari maupun untuk momen spesial, dengan harga yang tetap bersahabat di kantong.
+            </p>
+            <div class="about-highlights">
+                <div class="about-highlight-card">
+                    <div class="emoji">✨</div>
+                    <h4>Kualitas Terjamin</h4>
+                    <p>Bahan premium dan jahitan rapi pada setiap produk.</p>
+                </div>
+                <div class="about-highlight-card">
+                    <div class="emoji">🚚</div>
+                    <h4>Pengiriman Cepat</h4>
+                    <p>Pesanan diproses dan dikirim ke seluruh Indonesia.</p>
+                </div>
+                <div class="about-highlight-card">
+                    <div class="emoji">💬</div>
+                    <h4>Respon Ramah</h4>
+                    <p>Tim kami siap membantu pertanyaan seputar produk.</p>
+                </div>
+                <div class="about-highlight-card">
+                    <div class="emoji">💸</div>
+                    <h4>Harga Bersahabat</h4>
+                    <p>Fashion trendy dengan harga yang tetap terjangkau.</p>
+                </div>
+            </div>
+        </section>
+
     <section class="categories" id="kategori">
       <h2 class="section-title">Kategori</h2>
       <div class="category-grid">
@@ -290,6 +375,7 @@
                     <img src="baju basic 1.webp" alt="kaos Premium Basic Tee">
                     <h3>kaos Premium Basic Tee</h3>
                     <p class="price">Rp 245.000</p>
+                    <p class="product-desc">Kaos basic berbahan katun lembut, cocok jadi andalan gaya harian yang simpel dan nyaman.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('kaos Premium Basic Tee', 245000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -297,6 +383,7 @@
                     <img src="oversize luxe 3.jpg" alt="Oversize Shirt Luxe">
                     <h3>Oversize Shirt Luxe</h3>
                     <p class="price">Rp 350.000</p>
+                    <p class="product-desc">Kemeja oversize dengan potongan longgar bergaya luxe, pas untuk tampilan santai namun tetap stylish.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Oversize Shirt Luxe', 350000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -304,6 +391,7 @@
                     <img src="dres premium 2.webp" alt="Floral Dress Premium">
                     <h3>Floral Dress Premium</h3>
                     <p class="price">Rp 700.000</p>
+                    <p class="product-desc">Dress motif floral dengan bahan premium yang adem, cocok untuk acara semi-formal maupun jalan-jalan.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Floral Dress Premium', 700000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -311,6 +399,7 @@
                     <img src="hoodie exlusive 4.avif" alt="Hoodie Exclusive">
                     <h3>Hoodie Exclusive</h3>
                     <p class="price">Rp 385.000</p>
+                    <p class="product-desc">Hoodie tebal dan hangat dengan desain eksklusif, ideal menemani aktivitas outdoor maupun santai di rumah.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Hoodie Exclusive', 385000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -318,6 +407,7 @@
                     <img src="floral dress.webp" alt="floral dress">
                     <h3>floral dress</h3>
                     <p class="price">Rp 300.000</p>
+                    <p class="product-desc">Dress bermotif bunga dengan siluet feminin, ringan dipakai dan cocok untuk cuaca hangat.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('floral dress', 300000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -325,6 +415,7 @@
                     <img src="Blue Dress - Alexander.webp" alt="Blue Dress - Alexander">
                     <h3>Blue Dress - Alexander</h3>
                     <p class="price">Rp 560.000</p>
+                    <p class="product-desc">Long dress warna biru elegan dengan detail rapi, memberi kesan anggun di berbagai acara.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Blue Dress - Alexander', 560000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -332,6 +423,7 @@
                     <img src="Kaos Paris Tokyo New.webp" alt="Kaos Paris Tokyo New">
                     <h3>Kaos Paris Tokyo New</h3>
                     <p class="price">Rp 255.000</p>
+                    <p class="product-desc">Kaos dengan grafis kota Paris & Tokyo bergaya urban, cocok untuk tampilan kasual yang berkarakter.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Kaos Paris Tokyo New', 255000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -339,6 +431,7 @@
                     <img src="Kaos BAND - HINDIA TRACKLIST.jpg" alt="Kaos BAND - HINDIA TRACKLIST">
                     <h3>Kaos BAND - HINDIA TRACKLIST</h3>
                     <p class="price">Rp 650.000</p>
+                    <p class="product-desc">Kaos bertema band dengan desain tracklist khas, pilihan tepat untuk pecinta musik.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Kaos BAND - HINDIA TRACKLIST', 650000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -346,6 +439,7 @@
                     <img src="Kaos retro Amerika Mata Korea Style.webp" alt="Kaos retro Amerika Mata Korea Style">
                     <h3>Kaos retro Amerika Mata Korea Style</h3>
                     <p class="price">Rp 330.000</p>
+                    <p class="product-desc">Kaos retro perpaduan gaya Amerika dan Korea, tampil beda dengan sentuhan vintage.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Kaos retro Amerika Mata Korea Style', 330000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -353,6 +447,7 @@
                     <img src="Kaos New Life.jpg" alt="Kaos New Life">
                     <h3>Kaos New Life</h3>
                     <p class="price">Rp 200.000</p>
+                    <p class="product-desc">Kaos dengan cetakan grafis simpel dan motivatif, nyaman dipakai untuk gaya sehari-hari.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Kaos New Life', 200000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -360,6 +455,7 @@
                     <img src="Utility Shirt Dress.jpg" alt="Utility Shirt Dress">
                     <h3>Utility Shirt Dress</h3>
                     <p class="price">Rp 300.000</p>
+                    <p class="product-desc">Shirt dress model utility dengan banyak detail kantong, praktis dan fungsional untuk aktivitas harian.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Utility Shirt Dress', 300000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -367,6 +463,7 @@
                     <img src="Shirt Dress.jpg" alt="Shirt Dress">
                     <h3>Shirt Dress</h3>
                     <p class="price">Rp 430.000</p>
+                    <p class="product-desc">Dress model kemeja yang simpel dan versatile, mudah dipadukan untuk berbagai suasana.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Shirt Dress', 430000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -374,6 +471,7 @@
                     <img src="Amora Button Dress.jpg" alt="Amora Button Dress">
                     <h3>Amora Button Dress</h3>
                     <p class="price">Rp 530.000</p>
+                    <p class="product-desc">Long dress dengan deretan kancing depan, memberi kesan rapi dan elegan.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Amora Button Dress', 530000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -381,6 +479,7 @@
                     <img src="Elara Puff Sleeve Dress.jpg" alt="Elara Puff Sleeve Dress">
                     <h3>Elara Puff Sleeve Dress</h3>
                     <p class="price">Rp 600.000</p>
+                    <p class="product-desc">Mini dress dengan lengan puff yang manis, cocok untuk tampilan feminin dan playful.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Elara Puff Sleeve Dress', 600000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -388,6 +487,7 @@
                     <img src="Dress polos white.jpg" alt="Dress polos white">
                     <h3>Dress polos white</h3>
                     <p class="price">Rp 366.000</p>
+                    <p class="product-desc">Long dress polos putih yang simpel dan elegan, mudah dipadukan dengan aksesori apa pun.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Dress polos white', 366000)">Tambah ke Keranjang</button>
                 </article>
 
@@ -395,6 +495,7 @@
                     <img src="Scallop Knit Cardigan Set.jpg" alt="Scallop Knit Cardigan Set">
                     <h3>Scallop Knit Cardigan Set</h3>
                     <p class="price">Rp 270.000</p>
+                    <p class="product-desc">Setelan cardigan rajut dengan detail scallop, memberi sentuhan chic pada gaya casual.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Scallop Knit Cardigan Set', 270000)">Tambah ke Keranjang</button>
                 </article>
 
