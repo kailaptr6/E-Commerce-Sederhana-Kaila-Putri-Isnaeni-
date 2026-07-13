@@ -569,7 +569,6 @@
     <script>
         let keranjang = []; // [{ nama, harga, qty }]
 
-        // ================== DATA STOK PRODUK ==================
         // Diambil otomatis dari teks "Stok: X" di setiap kartu produk saat halaman dimuat
         let stokData = {};
 
@@ -577,7 +576,6 @@
             return "Rp " + angka.toLocaleString('id-ID');
         }
 
-        // ---------- INISIALISASI & TAMPILAN STOK ----------
         function initStok() {
             document.querySelectorAll('.product-card').forEach(card => {
                 const judulEl = card.querySelector('h3');
@@ -654,7 +652,6 @@
             }
         }
 
-        // ---------- KERANJANG (dengan validasi stok) ----------
         function tambahKeKeranjang(namaProduk, harga) {
             const stokTersedia = stokData[namaProduk] ?? 0;
 
@@ -817,7 +814,6 @@
                 return;
             }
 
-            // Validasi ulang stok sebelum menyelesaikan pesanan
             for (const item of keranjang) {
                 const stokTersedia = stokData[item.nama] ?? 0;
                 if (item.qty > stokTersedia) {
@@ -826,7 +822,6 @@
                 }
             }
 
-            // Kurangi stok sesuai jumlah yang dibeli
             keranjang.forEach(item => {
                 stokData[item.nama] = (stokData[item.nama] ?? 0) - item.qty;
                 if (stokData[item.nama] < 0) stokData[item.nama] = 0;
