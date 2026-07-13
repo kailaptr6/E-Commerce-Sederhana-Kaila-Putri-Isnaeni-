@@ -253,6 +253,21 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        /* Info & status stok */
+        .stock-info {
+            font-size: 12px;
+            color: #8b5e3c;
+            font-weight: 600;
+            margin: 4px 0;
+        }
+        .stock-info.habis {
+            color: #d9534f;
+        }
+        .btn-add:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
         /* Seksi Tentang Toko di halaman utama */
         .about-store {
             padding: 50px 20px;
@@ -366,7 +381,7 @@
       </div>
     </section>
 
-        
+
         <section id="produk" class="container">
             <h2 class="section-title">Produk Unggulan</h2>
             <div class="product-grid">
@@ -374,6 +389,7 @@
                 <article class="product-card" data-category="T-shirt">
                     <img src="baju basic 1.webp" alt="kaos Premium Basic Tee">
                     <h3>kaos Premium Basic Tee</h3>
+                    <p class="stock-info">Stok: 15</p>
                     <p class="price">Rp 245.000</p>
                     <p class="product-desc">Kaos basic berbahan katun lembut, cocok jadi andalan gaya harian yang simpel dan nyaman.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('kaos Premium Basic Tee', 245000)">Tambah ke Keranjang</button>
@@ -382,6 +398,7 @@
                 <article class="product-card" data-category="T-shirt">
                     <img src="oversize luxe 3.jpg" alt="Oversize Shirt Luxe">
                     <h3>Oversize Shirt Luxe</h3>
+                    <p class="stock-info">Stok: 0</p>
                     <p class="price">Rp 350.000</p>
                     <p class="product-desc">Kemeja oversize dengan potongan longgar bergaya luxe, pas untuk tampilan santai namun tetap stylish.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Oversize Shirt Luxe', 350000)">Tambah ke Keranjang</button>
@@ -390,6 +407,7 @@
                 <article class="product-card" data-category="Mini dress">
                     <img src="dres premium 2.webp" alt="Floral Dress Premium">
                     <h3>Floral Dress Premium</h3>
+                    <p class="stock-info">Stok: 6</p>
                     <p class="price">Rp 700.000</p>
                     <p class="product-desc">Dress motif floral dengan bahan premium yang adem, cocok untuk acara semi-formal maupun jalan-jalan.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Floral Dress Premium', 700000)">Tambah ke Keranjang</button>
@@ -398,6 +416,7 @@
                 <article class="product-card" data-category="Casual">
                     <img src="hoodie exlusive 4.avif" alt="Hoodie Exclusive">
                     <h3>Hoodie Exclusive</h3>
+                    <p class="stock-info">Stok: 9</p>
                     <p class="price">Rp 385.000</p>
                     <p class="product-desc">Hoodie tebal dan hangat dengan desain eksklusif, ideal menemani aktivitas outdoor maupun santai di rumah.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Hoodie Exclusive', 385000)">Tambah ke Keranjang</button>
@@ -406,6 +425,7 @@
                  <article class="product-card" data-category="Long dress">
                     <img src="floral dress.webp" alt="floral dress">
                     <h3>floral dress</h3>
+                    <p class="stock-info">Stok: 4</p>
                     <p class="price">Rp 300.000</p>
                     <p class="product-desc">Dress bermotif bunga dengan siluet feminin, ringan dipakai dan cocok untuk cuaca hangat.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('floral dress', 300000)">Tambah ke Keranjang</button>
@@ -414,6 +434,7 @@
                 <article class="product-card" data-category="Long dress">
                     <img src="Blue Dress - Alexander.webp" alt="Blue Dress - Alexander">
                     <h3>Blue Dress - Alexander</h3>
+                    <p class="stock-info">Stok: 1</p>
                     <p class="price">Rp 560.000</p>
                     <p class="product-desc">Long dress warna biru elegan dengan detail rapi, memberi kesan anggun di berbagai acara.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Blue Dress - Alexander', 560000)">Tambah ke Keranjang</button>
@@ -422,6 +443,7 @@
                 <article class="product-card" data-category="T-shirt">
                     <img src="Kaos Paris Tokyo New.webp" alt="Kaos Paris Tokyo New">
                     <h3>Kaos Paris Tokyo New</h3>
+                    <p class="stock-info">Stok: 20</p>
                     <p class="price">Rp 255.000</p>
                     <p class="product-desc">Kaos dengan grafis kota Paris & Tokyo bergaya urban, cocok untuk tampilan kasual yang berkarakter.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Kaos Paris Tokyo New', 255000)">Tambah ke Keranjang</button>
@@ -430,6 +452,7 @@
                 <article class="product-card" data-category="T-shirt">
                     <img src="Kaos BAND - HINDIA TRACKLIST.jpg" alt="Kaos BAND - HINDIA TRACKLIST">
                     <h3>Kaos BAND - HINDIA TRACKLIST</h3>
+                    <p class="stock-info">Stok: 3</p>
                     <p class="price">Rp 650.000</p>
                     <p class="product-desc">Kaos bertema band dengan desain tracklist khas, pilihan tepat untuk pecinta musik.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Kaos BAND - HINDIA TRACKLIST', 650000)">Tambah ke Keranjang</button>
@@ -438,6 +461,7 @@
                  <article class="product-card" data-category="T-shirt">
                     <img src="Kaos retro Amerika Mata Korea Style.webp" alt="Kaos retro Amerika Mata Korea Style">
                     <h3>Kaos retro Amerika Mata Korea Style</h3>
+                    <p class="stock-info">Stok: 0</p>
                     <p class="price">Rp 330.000</p>
                     <p class="product-desc">Kaos retro perpaduan gaya Amerika dan Korea, tampil beda dengan sentuhan vintage.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Kaos retro Amerika Mata Korea Style', 330000)">Tambah ke Keranjang</button>
@@ -446,6 +470,7 @@
                 <article class="product-card" data-category="T-shirt">
                     <img src="Kaos New Life.jpg" alt="Kaos New Life">
                     <h3>Kaos New Life</h3>
+                    <p class="stock-info">Stok: 25</p>
                     <p class="price">Rp 200.000</p>
                     <p class="product-desc">Kaos dengan cetakan grafis simpel dan motivatif, nyaman dipakai untuk gaya sehari-hari.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Kaos New Life', 200000)">Tambah ke Keranjang</button>
@@ -454,6 +479,7 @@
                 <article class="product-card" data-category="Mini dress">
                     <img src="Utility Shirt Dress.jpg" alt="Utility Shirt Dress">
                     <h3>Utility Shirt Dress</h3>
+                    <p class="stock-info">Stok: 7</p>
                     <p class="price">Rp 300.000</p>
                     <p class="product-desc">Shirt dress model utility dengan banyak detail kantong, praktis dan fungsional untuk aktivitas harian.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Utility Shirt Dress', 300000)">Tambah ke Keranjang</button>
@@ -462,6 +488,7 @@
                 <article class="product-card" data-category="Mini dress">
                     <img src="Shirt Dress.jpg" alt="Shirt Dress">
                     <h3>Shirt Dress</h3>
+                    <p class="stock-info">Stok: 2</p>
                     <p class="price">Rp 430.000</p>
                     <p class="product-desc">Dress model kemeja yang simpel dan versatile, mudah dipadukan untuk berbagai suasana.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Shirt Dress', 430000)">Tambah ke Keranjang</button>
@@ -470,6 +497,7 @@
                 <article class="product-card" data-category="Long dress">
                     <img src="Amora Button Dress.jpg" alt="Amora Button Dress">
                     <h3>Amora Button Dress</h3>
+                    <p class="stock-info">Stok: 5</p>
                     <p class="price">Rp 530.000</p>
                     <p class="product-desc">Long dress dengan deretan kancing depan, memberi kesan rapi dan elegan.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Amora Button Dress', 530000)">Tambah ke Keranjang</button>
@@ -478,6 +506,7 @@
                 <article class="product-card" data-category="Mini dress">
                     <img src="Elara Puff Sleeve Dress.jpg" alt="Elara Puff Sleeve Dress">
                     <h3>Elara Puff Sleeve Dress</h3>
+                    <p class="stock-info">Stok: 0</p>
                     <p class="price">Rp 600.000</p>
                     <p class="product-desc">Mini dress dengan lengan puff yang manis, cocok untuk tampilan feminin dan playful.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Elara Puff Sleeve Dress', 600000)">Tambah ke Keranjang</button>
@@ -486,6 +515,7 @@
                 <article class="product-card" data-category="Long dress">
                     <img src="Dress polos white.jpg" alt="Dress polos white">
                     <h3>Dress polos white</h3>
+                    <p class="stock-info">Stok: 11</p>
                     <p class="price">Rp 366.000</p>
                     <p class="product-desc">Long dress polos putih yang simpel dan elegan, mudah dipadukan dengan aksesori apa pun.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Dress polos white', 366000)">Tambah ke Keranjang</button>
@@ -494,6 +524,7 @@
                 <article class="product-card" data-category="Casual">
                     <img src="Scallop Knit Cardigan Set.jpg" alt="Scallop Knit Cardigan Set">
                     <h3>Scallop Knit Cardigan Set</h3>
+                    <p class="stock-info">Stok: 8</p>
                     <p class="price">Rp 270.000</p>
                     <p class="product-desc">Setelan cardigan rajut dengan detail scallop, memberi sentuhan chic pada gaya casual.</p>
                     <button class="btn-add" onclick="tambahKeKeranjang('Scallop Knit Cardigan Set', 270000)">Tambah ke Keranjang</button>
@@ -538,14 +569,59 @@
     <script>
         let keranjang = []; // [{ nama, harga, qty }]
 
+        // ================== DATA STOK PRODUK ==================
+        // Diambil otomatis dari teks "Stok: X" di setiap kartu produk saat halaman dimuat
+        let stokData = {};
+
         function formatRupiah(angka) {
             return "Rp " + angka.toLocaleString('id-ID');
+        }
+
+        // ---------- INISIALISASI & TAMPILAN STOK ----------
+        function initStok() {
+            document.querySelectorAll('.product-card').forEach(card => {
+                const judulEl = card.querySelector('h3');
+                const stokEl = card.querySelector('.stock-info');
+                if (!judulEl || !stokEl) return;
+
+                const nama = judulEl.innerText.trim();
+                const angka = parseInt(stokEl.innerText.replace(/[^0-9]/g, ''), 10);
+                stokData[nama] = isNaN(angka) ? 0 : angka;
+            });
+            perbaruiTampilanStok();
+        }
+
+        function perbaruiTampilanStok() {
+            document.querySelectorAll('.product-card').forEach(card => {
+                const judulEl = card.querySelector('h3');
+                const stokEl = card.querySelector('.stock-info');
+                const btnEl = card.querySelector('.btn-add');
+                if (!judulEl || !stokEl) return;
+
+                const nama = judulEl.innerText.trim();
+                const stokSaatIni = stokData[nama] ?? 0;
+                stokEl.innerText = 'Stok: ' + stokSaatIni;
+
+                if (stokSaatIni <= 0) {
+                    stokEl.classList.add('habis');
+                    if (btnEl) {
+                        btnEl.disabled = true;
+                        btnEl.innerText = 'Stok Habis';
+                    }
+                } else {
+                    stokEl.classList.remove('habis');
+                    if (btnEl) {
+                        btnEl.disabled = false;
+                        btnEl.innerText = 'Tambah ke Keranjang';
+                    }
+                }
+            });
         }
 
         function filterKategori(kategori) {
             const semuaProduk = document.querySelectorAll('.product-card');
             const semuaKategoriCard = document.querySelectorAll('.category-card');
-            
+
             semuaKategoriCard.forEach(card => {
                 card.classList.toggle('active', card.dataset.kategori === kategori);
             });
@@ -578,8 +654,23 @@
             }
         }
 
+        // ---------- KERANJANG (dengan validasi stok) ----------
         function tambahKeKeranjang(namaProduk, harga) {
+            const stokTersedia = stokData[namaProduk] ?? 0;
+
+            if (stokTersedia <= 0) {
+                alert('Maaf, stok "' + namaProduk + '" sudah habis!');
+                return;
+            }
+
             const itemAda = keranjang.find(item => item.nama === namaProduk);
+            const qtyDiKeranjang = itemAda ? itemAda.qty : 0;
+
+            if (qtyDiKeranjang + 1 > stokTersedia) {
+                alert('Stok "' + namaProduk + '" tidak mencukupi! Sisa stok: ' + stokTersedia);
+                return;
+            }
+
             if (itemAda) {
                 itemAda.qty++;
             } else {
@@ -587,13 +678,21 @@
             }
             perbaruiTampilanKeranjang();
 
-            // Notifikasi kecil, tetap buka panel keranjang
+            // Tetap buka panel keranjang
             bukaKeranjang();
         }
 
         function ubahJumlah(index, perubahan) {
-            keranjang[index].qty += perubahan;
-            if (keranjang[index].qty <= 0) {
+            const item = keranjang[index];
+            const stokTersedia = stokData[item.nama] ?? 0;
+
+            if (perubahan > 0 && item.qty + perubahan > stokTersedia) {
+                alert('Stok "' + item.nama + '" tidak mencukupi! Sisa stok: ' + stokTersedia);
+                return;
+            }
+
+            item.qty += perubahan;
+            if (item.qty <= 0) {
                 keranjang.splice(index, 1);
             }
             perbaruiTampilanKeranjang();
@@ -718,6 +817,22 @@
                 return;
             }
 
+            // Validasi ulang stok sebelum menyelesaikan pesanan
+            for (const item of keranjang) {
+                const stokTersedia = stokData[item.nama] ?? 0;
+                if (item.qty > stokTersedia) {
+                    alert('Maaf, stok "' + item.nama + '" tidak mencukupi untuk checkout.');
+                    return;
+                }
+            }
+
+            // Kurangi stok sesuai jumlah yang dibeli
+            keranjang.forEach(item => {
+                stokData[item.nama] = (stokData[item.nama] ?? 0) - item.qty;
+                if (stokData[item.nama] < 0) stokData[item.nama] = 0;
+            });
+            perbaruiTampilanStok();
+
             const total = hitungTotal();
             const kodePesanan = 'KF' + Date.now().toString().slice(-6);
 
@@ -747,6 +862,9 @@
             tutupCheckout();
             tutupKeranjang();
         }
+
+        // Jalankan saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', initStok);
     </script>
 
 </body>
