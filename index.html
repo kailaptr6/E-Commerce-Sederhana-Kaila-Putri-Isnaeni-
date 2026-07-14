@@ -138,7 +138,6 @@
   .success-box{text-align:center;}
   .success-box .icon{font-size:48px;margin-bottom:8px;}
 
-  /* payment method chooser */
   .pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
   .pay-method{
     border:1.5px solid var(--line);border-radius:8px;padding:10px;font-size:12.5px;text-align:center;
@@ -162,7 +161,6 @@
     font-size:11px;color:#999;background:#f7f7f7;border-radius:6px;padding:8px 10px;margin-top:12px;line-height:1.5;
   }
 
-  /* account panel */
   .auth-tabs{display:flex;gap:8px;margin-bottom:16px;}
   .auth-tab{flex:1;text-align:center;padding:9px;border-radius:7px;background:#f2f0eb;font-size:13px;cursor:pointer;font-weight:600;}
   .auth-tab.active{background:var(--accent-dark);color:#fff;}
@@ -179,7 +177,6 @@
     font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:#e7f4ea;color:var(--ok);
   }
 
-  /* reviews */
   .review-item{border-bottom:1px solid #f0f0f0;padding:10px 0;}
   .review-item .rv-top{display:flex;justify-content:space-between;font-size:13px;font-weight:600;}
   .review-item .rv-meta{font-size:11px;color:#999;}
@@ -258,6 +255,7 @@
             </div>
         </section>
 
+ 
   <section class="categories" id="kategori">
     <h2 class="section-title">Kategori</h2>
     <p class="section-sub">Filter otomatis mengambil data langsung dari basis data produk</p>
@@ -309,7 +307,7 @@
 </div>
 
 <script>
-    
+  
 let productDatabase = [
   { id:'p01', nama:'kaos Premium Basic Tee', kategori:'T-shirt', harga:245000, stok:60, gambar:'baju basic 1.webp',
     desc:'Kaos basic berbahan katun lembut, cocok jadi andalan gaya harian yang simpel dan nyaman.',
@@ -507,8 +505,6 @@ function renderPanelAkun(sesi){
         <p class="field-error" id="regError">Terjadi kesalahan pendaftaran.</p>
         <button class="btn-confirm" style="width:100%;margin-top:14px;" onclick="prosesRegister()">Daftar &amp; Masuk</button>
       </div>
-      <p class="note-sim">Akun disimpan lokal di perangkat ini (localStorage) sebagai simulasi, karena situs belum terhubung ke server/basis data pengguna sungguhan.</p>
-    `;
   }
 }
 
@@ -741,6 +737,8 @@ function renderCheckoutForm(){
       <button class="btn-cancel" onclick="tutupCheckout()">Batal</button>
       <button class="btn-confirm" id="btnBayarSekarang" onclick="mulaiProsesPembayaran()">Bayar Sekarang</button>
     </div>
+    
+  pilihMetode(metodeBayarAktif);
 }
 
 function pilihMetode(m){
