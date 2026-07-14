@@ -161,6 +161,7 @@
     font-size:11px;color:#999;background:#f7f7f7;border-radius:6px;padding:8px 10px;margin-top:12px;line-height:1.5;
   }
 
+  /* account panel */
   .auth-tabs{display:flex;gap:8px;margin-bottom:16px;}
   .auth-tab{flex:1;text-align:center;padding:9px;border-radius:7px;background:#f2f0eb;font-size:13px;cursor:pointer;font-weight:600;}
   .auth-tab.active{background:var(--accent-dark);color:#fff;}
@@ -177,6 +178,7 @@
     font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:#e7f4ea;color:var(--ok);
   }
 
+  /* reviews */
   .review-item{border-bottom:1px solid #f0f0f0;padding:10px 0;}
   .review-item .rv-top{display:flex;justify-content:space-between;font-size:13px;font-weight:600;}
   .review-item .rv-meta{font-size:11px;color:#999;}
@@ -197,6 +199,7 @@
   <nav class="navbar">
     <div class="logo">Kaila Fashion</div>
 
+    <!-- FITUR 2: SEARCH BAR -->
     <div class="search-box">
       <span>🔍</span>
       <input type="text" id="searchInput" placeholder="Cari produk... (mis. dress, kaos)" oninput="terapkanFilter()">
@@ -223,6 +226,7 @@
     <a href="#produk" class="btn-hero">Belanja Sekarang</a>
   </section>
 
+  <!-- FITUR 4: kategori, difilter dari productDatabase (simulasi basis data) -->
   <section class="categories" id="kategori">
     <h2 class="section-title">Kategori</h2>
     <p class="section-sub">Filter otomatis mengambil data langsung dari basis data produk</p>
@@ -243,6 +247,7 @@
 
 <div class="overlay" id="overlay" onclick="tutupSemua()"></div>
 
+<!-- ============ PANEL KERANJANG ============ -->
 <div class="side-panel" id="cartPanel">
   <div class="panel-header">
     <h2>Keranjang Belanja</h2>
@@ -257,6 +262,7 @@
   </div>
 </div>
 
+<!-- ============ FITUR 3: PANEL AKUN ============ -->
 <div class="side-panel" id="accountPanel">
   <div class="panel-header">
     <h2 id="accountPanelTitle">Akun Saya</h2>
@@ -265,10 +271,12 @@
   <div class="panel-body" id="accountPanelBody"></div>
 </div>
 
+<!-- ============ MODAL CHECKOUT / PAYMENT GATEWAY (FITUR 1) ============ -->
 <div class="modal" id="checkoutModal">
   <div class="modal-box" id="checkoutModalContent"></div>
 </div>
 
+<!-- ============ MODAL ULASAN (FITUR 5) ============ -->
 <div class="modal" id="reviewModal">
   <div class="modal-box" id="reviewModalContent"></div>
 </div>
@@ -392,7 +400,6 @@ function terapkanFilter(){
   renderProduk();
 }
 
-========================================================================= */
 function getUsers(){ return JSON.parse(localStorage.getItem('kf_users') || '[]'); }
 function saveUsers(u){ localStorage.setItem('kf_users', JSON.stringify(u)); }
 function getSesi(){ return JSON.parse(localStorage.getItem('kf_sesi') || 'null'); }
@@ -707,7 +714,7 @@ function renderCheckoutForm(){
       <button class="btn-cancel" onclick="tutupCheckout()">Batal</button>
       <button class="btn-confirm" id="btnBayarSekarang" onclick="mulaiProsesPembayaran()">Bayar Sekarang</button>
     </div>
-    
+  
   pilihMetode(metodeBayarAktif);
 }
 
@@ -785,7 +792,7 @@ function mulaiProsesPembayaran(){
   }
 
   err.classList.remove('show');
-  
+  // -------- simulasi proses payment gateway (loading -> sukses) --------
   document.getElementById('checkoutModalContent').innerHTML = `
     <div class="processing">
       <div class="spinner"></div>
