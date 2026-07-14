@@ -227,6 +227,37 @@
     <a href="#produk" class="btn-hero">Belanja Sekarang</a>
   </section>
 
+  <section class="about-store" id="tentang">
+            <h2>Tentang Kaila Fashion</h2>
+            <p>
+                Kaila Fashion adalah toko pakaian online yang menghadirkan koleksi dress, kaos, hingga outfit casual
+                dengan desain kekinian dan bahan berkualitas. Setiap produk kami pilih dengan cermat agar nyaman
+                dipakai sehari-hari maupun untuk momen spesial, dengan harga yang tetap bersahabat di kantong.
+            </p>
+            <div class="about-highlights">
+                <div class="about-highlight-card">
+                    <div class="emoji">✨</div>
+                    <h4>Kualitas Terjamin</h4>
+                    <p>Bahan premium dan jahitan rapi pada setiap produk.</p>
+                </div>
+                <div class="about-highlight-card">
+                    <div class="emoji">🚚</div>
+                    <h4>Pengiriman Cepat</h4>
+                    <p>Pesanan diproses dan dikirim ke seluruh Indonesia.</p>
+                </div>
+                <div class="about-highlight-card">
+                    <div class="emoji">💬</div>
+                    <h4>Respon Ramah</h4>
+                    <p>Tim kami siap membantu pertanyaan seputar produk.</p>
+                </div>
+                <div class="about-highlight-card">
+                    <div class="emoji">💸</div>
+                    <h4>Harga Bersahabat</h4>
+                    <p>Fashion trendy dengan harga yang tetap terjangkau.</p>
+                </div>
+            </div>
+        </section>
+
   <section class="categories" id="kategori">
     <h2 class="section-title">Kategori</h2>
     <p class="section-sub">Filter otomatis mengambil data langsung dari basis data produk</p>
@@ -710,9 +741,6 @@ function renderCheckoutForm(){
       <button class="btn-cancel" onclick="tutupCheckout()">Batal</button>
       <button class="btn-confirm" id="btnBayarSekarang" onclick="mulaiProsesPembayaran()">Bayar Sekarang</button>
     </div>
-    <p class="note-sim">Ini adalah simulasi payment gateway untuk keperluan demo/tugas — tidak ada transaksi uang sungguhan yang diproses.</p>
-  `;
-  pilihMetode(metodeBayarAktif);
 }
 
 function pilihMetode(m){
