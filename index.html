@@ -161,6 +161,7 @@
     font-size:11px;color:#999;background:#f7f7f7;border-radius:6px;padding:8px 10px;margin-top:12px;line-height:1.5;
   }
 
+  /* account panel */
   .auth-tabs{display:flex;gap:8px;margin-bottom:16px;}
   .auth-tab{flex:1;text-align:center;padding:9px;border-radius:7px;background:#f2f0eb;font-size:13px;cursor:pointer;font-weight:600;}
   .auth-tab.active{background:var(--accent-dark);color:#fff;}
@@ -177,6 +178,7 @@
     font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:#e7f4ea;color:var(--ok);
   }
 
+  /* reviews */
   .review-item{border-bottom:1px solid #f0f0f0;padding:10px 0;}
   .review-item .rv-top{display:flex;justify-content:space-between;font-size:13px;font-weight:600;}
   .review-item .rv-meta{font-size:11px;color:#999;}
@@ -223,37 +225,6 @@
     <a href="#produk" class="btn-hero">Belanja Sekarang</a>
   </section>
 
-  <section class="about-store" id="tentang">
-            <h2>Tentang Kaila Fashion</h2>
-            <p>
-                Kaila Fashion adalah toko pakaian online yang menghadirkan koleksi dress, kaos, hingga outfit casual
-                dengan desain kekinian dan bahan berkualitas. Setiap produk kami pilih dengan cermat agar nyaman
-                dipakai sehari-hari maupun untuk momen spesial, dengan harga yang tetap bersahabat di kantong.
-            </p>
-            <div class="about-highlights">
-                <div class="about-highlight-card">
-                    <div class="emoji">✨</div>
-                    <h4>Kualitas Terjamin</h4>
-                    <p>Bahan premium dan jahitan rapi pada setiap produk.</p>
-                </div>
-                <div class="about-highlight-card">
-                    <div class="emoji">🚚</div>
-                    <h4>Pengiriman Cepat</h4>
-                    <p>Pesanan diproses dan dikirim ke seluruh Indonesia.</p>
-                </div>
-                <div class="about-highlight-card">
-                    <div class="emoji">💬</div>
-                    <h4>Respon Ramah</h4>
-                    <p>Tim kami siap membantu pertanyaan seputar produk.</p>
-                </div>
-                <div class="about-highlight-card">
-                    <div class="emoji">💸</div>
-                    <h4>Harga Bersahabat</h4>
-                    <p>Fashion trendy dengan harga yang tetap terjangkau.</p>
-                </div>
-            </div>
-        </section>
-  
   <section class="categories" id="kategori">
     <h2 class="section-title">Kategori</h2>
     <p class="section-sub">Filter otomatis mengambil data langsung dari basis data produk</p>
@@ -305,7 +276,7 @@
 </div>
 
 <script>
-  
+
 let productDatabase = [
   { id:'p01', nama:'kaos Premium Basic Tee', kategori:'T-shirt', harga:245000, stok:60, gambar:'baju basic 1.webp',
     desc:'Kaos basic berbahan katun lembut, cocok jadi andalan gaya harian yang simpel dan nyaman.',
@@ -365,7 +336,7 @@ function pilihKategori(k){
   document.getElementById('produk').scrollIntoView({ behavior:'smooth' });
   terapkanFilter();
 }
-
+  
 function ratingRataRata(produk){
   if(!produk.reviews.length) return 0;
   return produk.reviews.reduce((a,r)=>a+r.rating,0) / produk.reviews.length;
@@ -813,6 +784,7 @@ function mulaiProsesPembayaran(){
   }
 
   err.classList.remove('show');
+  
   document.getElementById('checkoutModalContent').innerHTML = `
     <div class="processing">
       <div class="spinner"></div>
