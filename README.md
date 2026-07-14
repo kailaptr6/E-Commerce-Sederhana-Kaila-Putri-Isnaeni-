@@ -1,6 +1,5 @@
-# 🛍️ Business Overview — Kaila Fashion Store
-
-> Dokumen ini merangkum gambaran bisnis (business overview) untuk platform e-commerce fashion sederhana yang dikembangkan dalam repository **E-Commerce-Sederhana-Kaila-Putri-Isnaeni**.
+Kaila Fashion Store — Business Overview
+Dokumen ini berisi gambaran bisnis lengkap untuk Kaila Fashion Store, mulai dari konsep bisnis, target pasar, strategi produk, model pendapatan, hingga rencana teknis (checkout, keamanan, SEO, dan data analytics) untuk mendukung platform e-commerce yang sudah dibangun (index.html, cart.html, admin.html, script.js).
 
 ---
 
@@ -205,4 +204,4 @@ Contoh alur simulasi (dummy, sisi front-end):
 
 ---
 
-*Dokumen ini adalah gambaran bisnis awal (business overview) dan dapat terus dikembangkan seiring pertumbuhan platform Kaila Fashion Store.*
+Disusun oleh: Kaila Putri Isnaeni — Administrasi Bisnis 3 Untuk: Kaila Fashion Store
